@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+﻿<!DOCTYPE html> 
 
 <html>
 <head>
@@ -8,6 +8,19 @@
 </head> 
 
 <body> 
+
+    <div id="racer">
+        <div id="hud">
+            <span id="speed" class="hud"><span id="speed_value" class="value">0</span> mph</span>
+            <span id="current_lap_time" class="hud">Time: <span id="current_lap_time_value" class="value">0.0</span></span>
+            <span id="last_lap_time" class="hud">Last Lap: <span id="last_lap_time_value" class="value">0.0</span></span>
+            <span id="fast_lap_time" class="hud">Fastest Lap: <span id="fast_lap_time_value" class="value">0.0</span></span>
+        </div>
+        <canvas id="canvas">
+            Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+        </canvas>
+        Loading...
+    </div>
 
   <table id="controls">
     <tr>
@@ -67,19 +80,6 @@
     <p>Use the <b>arrow keys</b> to drive the car.</p>
   </div>
 
-  <div id="racer">
-    <div id="hud">
-      <span id="speed"            class="hud"><span id="speed_value" class="value">0</span> mph</span>
-      <span id="current_lap_time" class="hud">Time: <span id="current_lap_time_value" class="value">0.0</span></span> 
-      <span id="last_lap_time"    class="hud">Last Lap: <span id="last_lap_time_value" class="value">0.0</span></span>
-      <span id="fast_lap_time"    class="hud">Fastest Lap: <span id="fast_lap_time_value" class="value">0.0</span></span>
-    </div>
-    <canvas id="canvas">
-      Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
-    </canvas>
-    Loading...
-  </div>
-
   <audio id='music'>
     <source src="music/racer.ogg">
     <source src="music/racer.mp3">
@@ -88,6 +88,7 @@
 
   <script src="stats.js"></script>
   <script src="common.js"></script>
+  <script src="ajung.js"></script>
   <script>
 
     var fps            = 60;                      // how many 'update' frames per second
