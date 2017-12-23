@@ -364,9 +364,12 @@ var COLORS = {
 };
 
 var BACKGROUND = {
-  HILLS: { x:   5, y:   5, w: 1280, h: 480 },
+/*  HILLS: { x:   5, y:   5, w: 1280, h: 480 },
   SKY:   { x:   5, y: 495, w: 1280, h: 480 },
-  TREES: { x:   5, y: 985, w: 1280, h: 480 }
+  TREES: { x:   5, y: 985, w: 1280, h: 480 }*/
+      HILLS: {x:0, y:0, w:0, h:0},
+  SKY: { x: 0, y: 0, w: 0, h: 0 },
+  TREES: { x: 320, y: 360, w: 1280, h: 480 }
 };
 
 var SPRITES = {
