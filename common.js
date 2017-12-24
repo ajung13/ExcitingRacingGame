@@ -284,7 +284,7 @@ var Render = {
     var destW = Math.floor(width * (sourceW/imageW));
     var destH = height;
 
-    ctx.drawImage(background, sourceX, sourceY, sourceW, sourceH, destX, destY, destW, destH);
+   ctx.drawImage(background, sourceX, sourceY, sourceW, sourceH, destX, destY, destW, destH);
     if (sourceW < imageW)
       ctx.drawImage(background, layer.x, sourceY, imageW-sourceW, sourceH, destW-1, destY, width-destW, destH);
   },
@@ -350,15 +350,16 @@ var KEY = {
   A:     65,
   D:     68,
   S:     83,
-  W:     87
+  W:     87,
+  F: 70
 };
 
 var COLORS = {
-  SKY:  '#72D7EE',
-  TREE: '#005108',
-  FOG:  '#005108',
-  LIGHT:  { road: '#6B6B6B', grass: '#10AA10', rumble: '#555555', lane: '#CCCCCC'  },
-  DARK:   { road: '#696969', grass: '#009A00', rumble: '#BBBBBB'                   },
+    SKY: '#071416',
+  TREE: '#030111',
+  FOG: '#030111',
+  LIGHT:  { road: '#4c4c4c', grass: '#1f2b1f', rumble: '#000000', lane: '#CCCCCC'  },
+    DARK: { road: '#3a3a3a', grass: '#0b0f0b', rumble: '#BBBBBB' },
   START:  { road: 'white',   grass: 'white',   rumble: 'white'                     },
   FINISH: { road: 'black',   grass: 'black',   rumble: 'black'                     }
 };
@@ -367,7 +368,7 @@ var BACKGROUND = {
 /*  HILLS: { x:   5, y:   5, w: 1280, h: 480 },
   SKY:   { x:   5, y: 495, w: 1280, h: 480 },
   TREES: { x:   5, y: 985, w: 1280, h: 480 }*/
-      HILLS: {x:0, y:0, w:0, h:0},
+  HILLS: {x:0, y:0, w:0, h:0},
   SKY: { x: 0, y: 0, w: 0, h: 0 },
   TREES: { x: 320, y: 360, w: 1280, h: 480 }
 };

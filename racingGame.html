@@ -119,9 +119,11 @@
     var position       = 0;                       // current camera Z position (add playerZ to get player's absolute Z position)
     var speed          = 0;                       // current speed
     var maxSpeed       = segmentLength/step;      // top speed (ensure we can't move more than 1 segment in a single frame to make collision detection easier)
-    var accel          =  maxSpeed/5;             // acceleration rate - tuned until it 'felt' right
+    var accel = maxSpeed / 5;             // acceleration rate - tuned until it 'felt' right
+    var accel2 = maxSpeed / 2;
     var breaking       = -maxSpeed;               // deceleration rate when braking
-    var decel          = -maxSpeed/5;             // 'natural' deceleration rate when neither accelerating, nor braking
+    var decel = -maxSpeed / 5;             // 'natural' deceleration rate when neither accelerating, nor braking
+    var decel2 = -maxSpeed / 2;
     var offRoadDecel   = -maxSpeed/2;             // off road deceleration is somewhere in between
     var offRoadLimit   =  maxSpeed/4;             // limit when off road deceleration no longer applies (e.g. you can always go at least this speed even when off road)
     var totalCars      = 50;                     // total number of cars on the road
@@ -132,6 +134,9 @@
     var keyRight       = false;
     var keyFaster      = false;
     var keySlower      = false;
+    var keyBoost = false;
+    var startFlag = false;
+	var boostCnt = 0;
 
     var hud = {
       speed:            { value: null, dom: Dom.get('speed_value')            },
@@ -164,14 +169,31 @@
 
       playerX = playerX - (dx * speedPercent * playerSegment.curve * centrifugal);
 
-      if (keyFaster)
-        speed = Util.accelerate(speed, accel, dt);
+      if (keyFaster) {
+          if (keyBoost) {
+			  if(!startFlag)
+				 boostCnt = 0;
+              startFlag = true;
+			  boostCnt++;
+              speed = Util.accelerate(speed, accel2, dt);
+          }
+          else if(!startFlag){
+              speed = Util.accelerate(speed, accel, dt);
+          }
+          else if(boostCnt > 0){
+              speed = Util.accelerate(speed, decel2, dt);
+			  boostCnt--;
+			  if(boostCnt <= 0 || speed<=accel)
+				 startFlag = false;
+          }
+      }
       else if (keySlower)
-        speed = Util.accelerate(speed, breaking, dt);
+          speed = Util.accelerate(speed, breaking, dt);
       else
-        speed = Util.accelerate(speed, decel, dt);
+          speed = Util.accelerate(speed, decel, dt);
+        ////////////////////////////////
 
-
+    
       if ((playerX < -1) || (playerX > 1)) {
 
         if (speed > offRoadLimit)
@@ -224,7 +246,7 @@
           updateHud('last_lap_time', formatTime(lastLapTime));
           alert("Game ends! your result is " + lastLapTime);
           Dom.show('last_lap_time');
-          window.open("http://cspro.sogang.ac.kr/~cse20131605/pizza_order.html", "_self");
+          window.open("http://cspro.sogang.ac.kr/~cse20131605/project/ranking.html", "_self");
         }
         else {
           currentLapTime += dt;
@@ -612,7 +634,9 @@
         { keys: [KEY.LEFT,  KEY.A], mode: 'up',   action: function() { keyLeft   = false; } },
         { keys: [KEY.RIGHT, KEY.D], mode: 'up',   action: function() { keyRight  = false; } },
         { keys: [KEY.UP,    KEY.W], mode: 'up',   action: function() { keyFaster = false; } },
-        { keys: [KEY.DOWN,  KEY.S], mode: 'up',   action: function() { keySlower = false; } }
+        { keys: [KEY.DOWN, KEY.S], mode: 'up', action: function () { keySlower = false; } },
+        { keys: [KEY.F], mode: 'down', action: function () { keyBoost = true; } },
+        { keys: [KEY.F], mode: 'up', action: function () { keyBoost = false; } }
       ],
       ready: function(images) {
         background = images[0];
