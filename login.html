@@ -1,5 +1,5 @@
 <html>
-  <title>Login for the game</title>
+  <title>Exciting Racing Game</title>
   <style>
 input[type=text], input[type=password] {
     width: 100%;
@@ -91,7 +91,7 @@ button {
 
   <body>
     <div style="float: left; width: 45%;">
-     <p>Before playing the racing game, please log in or sign up.</p>
+     <p align="center">Before playing the racing game, please log in or sign up.</p>
 
 	 <form id="loginform" class="modal-content animate" action="login_page.php" method="post">
 
@@ -108,8 +108,7 @@ button {
   </form>
   </div>
   <div style="float: left; width: 45%;">
-
-	<p>If you are not a member of this game, please sign up.</p>
+	<p align="center">If you are not a member of this game, please sign up.</p>
 
 	<form id="signupform" class="modal-content animate" action="login_page.php" method="post" onsubmit="return validation()">
     <div class="container">
@@ -126,12 +125,11 @@ button {
     </div>
   </form>
 		</div>
+	
   </body>
 
   <script>
   	function validation(){
-//		var psw = document.forms[1].elements[1].value;
-//		var psw2 = document.forms[1].elementes[2].value;
 		var psw = document.getElementById("signupform").elements["psw"].value;
 		var psw2 = document.getElementById("signupform").elements["psw-repeat"].value;
 		if(psw === psw2)

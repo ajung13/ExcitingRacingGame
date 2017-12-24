@@ -1,19 +1,15 @@
-﻿<!DOCTYPE html> 
-
-<html>
+﻿<html>
 <head>
   <title>Exciting Racing Game!</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link href="common.css" rel="stylesheet" type="text/css" />
 </head> 
 
-<body> 
+<body>
     <div id="racer">
         <div id="hud">
             <span id="speed" class="hud">Speed: <span id="speed_value" class="value">0</span></span>
             <span id="current_lap_time" class="hud">Time: <span id="current_lap_time_value" class="value">0.0</span></span>
-            <span id="last_lap_time" class="hud">Last Lap: <span id="last_lap_time_value" class="value">0.0</span></span>
-            <span id="fast_lap_time" class="hud">Fastest Lap: <span id="fast_lap_time_value" class="value">0.0</span></span>
         </div>
         <canvas id="canvas">
             Sorry, this game cannot be run because your browser does not support the &lt;canvas&gt; element
@@ -141,8 +137,6 @@
     var hud = {
       speed:            { value: null, dom: Dom.get('speed_value')            },
       current_lap_time: { value: null, dom: Dom.get('current_lap_time_value') },
-      last_lap_time:    { value: null, dom: Dom.get('last_lap_time_value')    },
-      fast_lap_time:    { value: null, dom: Dom.get('fast_lap_time_value')    }
     }
 
     //=========================================================================
@@ -233,20 +227,9 @@
         if (currentLapTime && (startPosition < playerZ)) {
           lastLapTime    = currentLapTime;
           currentLapTime = 0;
-          if (lastLapTime <= Util.toFloat(Dom.storage.fast_lap_time)) {
-            Dom.storage.fast_lap_time = lastLapTime;
-            updateHud('fast_lap_time', formatTime(lastLapTime));
-            Dom.addClassName('fast_lap_time', 'fastest');
-            Dom.addClassName('last_lap_time', 'fastest');
-          }
-          else {
-            Dom.removeClassName('fast_lap_time', 'fastest');
-            Dom.removeClassName('last_lap_time', 'fastest');
-          }
-          updateHud('last_lap_time', formatTime(lastLapTime));
           alert("Game ends! your result is " + lastLapTime);
-          Dom.show('last_lap_time');
-          window.open("http://cspro.sogang.ac.kr/~cse20131605/project/ranking.html", "_self");
+		  var url = "http://cspro.sogang.ac.kr/~cse20131605/project/ranking.html";
+          window.open(url, "_self");
         }
         else {
           currentLapTime += dt;
@@ -642,8 +625,6 @@
         background = images[0];
         sprites    = images[1];
         reset();
-        Dom.storage.fast_lap_time = Dom.storage.fast_lap_time || 180;
-        updateHud('fast_lap_time', formatTime(Util.toFloat(Dom.storage.fast_lap_time)));
       }
     });
 
@@ -703,6 +684,7 @@
     //=========================================================================
 
   </script>
+
 
 </body> 
 </html>
