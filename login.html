@@ -1,5 +1,6 @@
+
 <html>
-  <title>Exciting Racing Game</title>
+  <title>Login for the game</title>
   <style>
 input[type=text], input[type=password] {
     width: 100%;
@@ -28,7 +29,7 @@ button {
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn,.signupbtn {float:left;width:50%}
+.cancelbtn,.signupbtn {float:left;width:100%}
 
 /* Add padding to container elements */
 .container {
@@ -90,30 +91,55 @@ button {
   </style>
 
   <body>
-    <div style="float: left; width: 45%;">
+
+
+      <p>
+    <div style="float: left; width: 50%;">
      <p align="center">Before playing the racing game, please log in or sign up.</p>
 
-	 <form id="loginform" class="modal-content animate" action="login_page.php" method="post">
+	 <form class="modal-content animate" method="post" action="http://cspro.sogang.ac.kr/~cse20131605/project/action_page.php">
+	 <input type="hidden" name="score" value=""/>
 
      <div class="container">
        <label><b>Username</b></label>
-       <input type="text" placeholder="Enter Username" name="username" required>
+       <input type="text" placeholder="Enter Username" name="name" required>
 
       <label><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
       <button type="submit">Login</button>
     </div>
+         <!--
+             <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
 
+         -->
   </form>
   </div>
-  <div style="float: left; width: 45%;">
-	<p align="center">If you are not a member of this game, please sign up.</p>
+  <div style="float: left; width: 50%;">
 
-	<form id="signupform" class="modal-content animate" action="login_page.php" method="post" onsubmit="return validation()">
+	<p align="center">If you are not a member of this game, please sign up.</p>
+    
+             
+	<form id="signupform" class="modal-content animate" method="post" name="signup" action="http://cspro.sogang.ac.kr/~cse20131605/project/action_page.php" onsubmit="return validation()">
+ 
+           <script language="javascript">
+
+/*          temp=location.href.split("?");
+          data=temp[1].split("=");
+          time=data[1];
+             //  document.score.value=time;
+		  document.getElementsByName("score")[0].value = time;*/
+                        </script>
+
+            <input type="hidden" name="score1" value="" />
+
+
     <div class="container">
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Your Name" name="new_username" required>
+      <label><b>UserName</b></label>
+      <input type="text" placeholder="Enter Your Name" name="name" required>
 
       <label><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
@@ -121,21 +147,51 @@ button {
       <label><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
-      <button type="submit">Sign Up</button>
+       
+          <div class="clearfix">
+        <button type="submit" class="signupbtn" >Sign Up</button>
+      </div>
     </div>
   </form>
-		</div>
-	
-  </body>
 
-  <script>
-  	function validation(){
+		</div>
+      </p>
+
+
+           <script language="javascript">
+
+          temp=location.href.split("?");
+          data=temp[1].split("=");
+          time=data[1];
+             //  document.score.value=time;
+          document.getElementsByName("score")[0].value = time;
+		  document.getElemetnsByName("score1")[0].value = time;
+
+		 function validation(){
 		var psw = document.getElementById("signupform").elements["psw"].value;
 		var psw2 = document.getElementById("signupform").elements["psw-repeat"].value;
 		if(psw === psw2)
 			return true;
 		alert("check your password!");
 		return false;
-	}
-  </script>
+	} 
+                        </script>
+
+
+      <div style="text-align: center">
+                    <script language="javascript">
+          document.write("Your lap time is " + time +"!!<br>");
+                        </script>
+          <font size="8em" color="blue">Try again?</font>
+          <a href="http://cspro.sogang.ac.kr/~cse20131605/project/racingGame.html">
+              <img src="restart.png" width="30px" />
+              </a>
+                        
+    <!--
+        <form action="racingGame.html">
+    <input type="submit" value="Play again"/>
+        -->
+        </div>
+
+  </body>
 </html>

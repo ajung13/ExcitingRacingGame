@@ -228,7 +228,8 @@
           lastLapTime    = currentLapTime;
           currentLapTime = 0;
           alert("Game ends! your result is " + lastLapTime);
-		  var url = "http://cspro.sogang.ac.kr/~cse20131605/project/ranking.html";
+        //    var url = "http://cspro.sogang.ac.kr/~cse20131605/project/ranking.html";
+          var url = "http://cspro.sogang.ac.kr/~cse20131605/project/login.html?score="+lastLapTime;
           window.open(url, "_self");
         }
         else {
